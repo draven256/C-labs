@@ -52,33 +52,60 @@ int main(void)
             listPointer++;
             break;
 
-            case '2': 
+        case '2':
             printf("Current Total: €%.2f\n", total);
             break;
 
-            case '3':
-            for (int i = 0; i < listPointer; i++){
-                printf("%s\n", list[i]);
+        case '3':
+            if (confirm() != 1)
+                break;
+            else
+            {
+                for (int i = 0; i < listPointer; i++)
+                {
+                    printf("%s\n", list[i]);
+                }
+                printf("Total: €%.2f\n", total);
+                listPointer = 0;
+                total = 0;
+                printf("New session\n");
+                break;
             }
-            printf("Total: €%.2f\n", total);
-            listPointer = 0;
-            total = 0;
-            printf("New session\n");
+
+        case '4':
+            if (confirm() != 1)
+                break;
+            else
+            {
+                listPointer = 0;
+                total = 0;
+                printf("Shopping cart has been reset\n");
+                break;
+            }
+
+        case 'q':
+            if (confirm() != 1)
+                break;
+            else
+            {
+                return 0;
+            }
             break;
 
-            case '4':
-            listPointer = 0;
-            total = 0;
-            printf("Shopping cart has been reset\n");
-            break;
-
-            case 'q': 
-            return 0;
+        default:
         }
 
-        while(getchar() != '\n');
+        while (getchar() != '\n')
+            ;
 
     } while (!quit);
     return 0;
 }
 
+int confirm()
+{
+    int confirm;
+    printf("Are you sure? (Yes - 1, No - 0)\n");
+    scanf("%d", &confirm);
+    return confirm;
+}
